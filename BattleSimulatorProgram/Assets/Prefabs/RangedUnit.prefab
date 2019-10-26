@@ -12,8 +12,9 @@ GameObject:
   - component: {fileID: 2660545568315181969}
   - component: {fileID: 2480718107254906667}
   - component: {fileID: 7433058743604080381}
+  - component: {fileID: 114904906277090328}
   m_Layer: 0
-  m_Name: Sphere
+  m_Name: RangedUnit
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -91,3 +92,24 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &114904906277090328
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6455094608023896436}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9aecbd3ce22d46549b5dd1f56af64f45, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  range: 0
+  hp: 0
+  maxHp: 0
+  attack: 0
+  speed: 0
+  team: 0
+  mat:
+  - {fileID: 2100000, guid: 9d64b4bc6c7424546bf38e7c0736c0dd, type: 2}
+  - {fileID: 2100000, guid: 28a124014774c84488d270a304b1a1a7, type: 2}
