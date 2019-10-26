@@ -9,7 +9,7 @@ public class MeleeUnit : Unit
     // Start is called before the first frame update
     void Start()
     {
-        
+
         hp = 10;
         maxHp = hp;
         attack = 2;
@@ -31,10 +31,5 @@ public class MeleeUnit : Unit
         }
 
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
 }
+

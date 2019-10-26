@@ -26,7 +26,7 @@ public abstract class Unit : MonoBehaviour
     public float Speed { get => speed; }
     public int Team { get => team; }
 
-    int duration = 1;
+    int count = 0;
     float timer = 0;
 
 
@@ -44,7 +44,8 @@ public abstract class Unit : MonoBehaviour
         {
             transform.position = Vector3.MoveTowards(transform.position, GetClosestUnit().transform.position, speed * Time.deltaTime);
         }
-
+        Debug.Log(count);
+        count++;
     }
 
     protected bool IsInRange(GameObject Enemy)
@@ -80,6 +81,8 @@ public abstract class Unit : MonoBehaviour
                 unit = temp;
             }
         }
+        Debug.Log(unit);
         return unit;
+        
     }
 }

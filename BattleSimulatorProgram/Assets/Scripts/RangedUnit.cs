@@ -21,19 +21,14 @@ public class RangedUnit : Unit
         switch (team)
         {
             case 1:
-                //GetComponent<MeshRenderer>().material = Resources.Load<Material>("Team1");
+
                 gameObject.tag = "Team 1";
                 break;
             case 2:
-                //GetComponent<MeshRenderer>().material = Resources.Load<Material>("Team2");
+
                 gameObject.tag = "Team 2";
                 break;
         }
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }
+
