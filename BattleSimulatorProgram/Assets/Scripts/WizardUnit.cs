@@ -11,7 +11,7 @@ public class WizardUnit : Unit
         hp = 100;
         maxHp = hp;
         attack = 1;
-        range = 3;
+        range = 2;
         speed = 0.75f;
         team = Random.Range(3, 4);
 

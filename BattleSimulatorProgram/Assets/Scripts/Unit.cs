@@ -33,29 +33,33 @@ public abstract class Unit : MonoBehaviour
     void Update()
     {
         DeathCheck();
-        if (((float)hp/ maxHp) <= (0.25 *maxHp)/100)
+        if (GetClosestUnit() != null)
         {
-            transform.position = Vector3.MoveTowards(transform.position, GetClosestUnit().transform.position, -(speed/2) * Time.deltaTime);
-        }
-        else if (!IsInRange(GetClosestUnit()))
-        {
-            transform.position = Vector3.MoveTowards(transform.position, GetClosestUnit().transform.position, speed * Time.deltaTime);
-        }else if (team == 3)
-        {
-            GameObject[] team1 = GameObject.FindGameObjectsWithTag("Team 1");
-            GameObject[] team2 = GameObject.FindGameObjectsWithTag("Team 2");
-            GameObject[] nonWizard = team1.Concat(team2).ToArray();
-            foreach (GameObject enemy in nonWizard)
+            if (((float)hp / maxHp) <= (0.25 * maxHp) / 100)
             {
-                if (IsInRange(enemy))
+                transform.position = Vector3.MoveTowards(transform.position, GetClosestUnit().transform.position, -(speed / 2) * Time.deltaTime);
+            }
+            else if (!IsInRange(GetClosestUnit()))
+            {
+                transform.position = Vector3.MoveTowards(transform.position, GetClosestUnit().transform.position, speed * Time.deltaTime);
+            }
+            else if (team == 3)
+            {
+                GameObject[] team1 = GameObject.FindGameObjectsWithTag("Team 1");
+                GameObject[] team2 = GameObject.FindGameObjectsWithTag("Team 2");
+                GameObject[] nonWizard = team1.Concat(team2).ToArray();
+                foreach (GameObject enemy in nonWizard)
                 {
-                    AttackEnemy(enemy);
+                    if (IsInRange(enemy))
+                    {
+                        AttackEnemy(enemy);
+                    }
                 }
             }
-        }
-        else
-        {
-            AttackEnemy(GetClosestUnit());
+            else if (team != 3)
+            {
+                AttackEnemy(GetClosestUnit());
+            }
         }
         healthBar.fillAmount = ((float)hp / maxHp);
     }
@@ -105,8 +109,7 @@ public abstract class Unit : MonoBehaviour
                 unit = temp;
             }
         }
-        return unit;
-        
+        return unit;       
     }
 
     protected void AttackEnemy(GameObject enemy)
