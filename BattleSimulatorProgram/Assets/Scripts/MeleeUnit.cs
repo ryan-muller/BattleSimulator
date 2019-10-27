@@ -10,7 +10,7 @@ public class MeleeUnit : Unit
     void Start()
     {
 
-        hp = 10;
+        hp = 100;
         maxHp = hp;
         attack = 2;
         range = 1;
@@ -21,7 +21,6 @@ public class MeleeUnit : Unit
         switch (team)
         {
             case 1:
-
                 gameObject.tag = "Team 1";
                 break;
             case 2:
@@ -29,7 +28,7 @@ public class MeleeUnit : Unit
                 gameObject.tag = "Team 2";
                 break;
         }
-
+        healthBar = GetComponentsInChildren<Image>()[1];
     }
 }
 

@@ -10,7 +10,7 @@ public class RangedUnit : Unit
     void Start()
     {
 
-        hp = 8;
+        hp = 80;
         maxHp = hp;
         attack = 3;
         range = 2;
@@ -21,7 +21,6 @@ public class RangedUnit : Unit
         switch (team)
         {
             case 1:
-
                 gameObject.tag = "Team 1";
                 break;
             case 2:
@@ -29,6 +28,7 @@ public class RangedUnit : Unit
                 gameObject.tag = "Team 2";
                 break;
         }
+        healthBar = GetComponentsInChildren<Image>()[1];
     }
 }
 
