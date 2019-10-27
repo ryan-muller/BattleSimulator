@@ -12,6 +12,7 @@ public abstract class Unit : MonoBehaviour
     [SerializeField] protected int attack;
     [SerializeField] protected float speed;
     [SerializeField] protected int team;
+    [SerializeField] protected string type;
     [SerializeField] protected Material[] mat;
 
     protected Image healthBar;
@@ -22,6 +23,7 @@ public abstract class Unit : MonoBehaviour
     public int Attack { get => attack; }
     public float Speed { get => speed; }
     public int Team { get => team; }
+    public string Type { get => type; }
 
 
     // Start is called before the first frame update
@@ -43,7 +45,7 @@ public abstract class Unit : MonoBehaviour
             {
                 transform.position = Vector3.MoveTowards(transform.position, GetClosestUnit().transform.position, speed * Time.deltaTime);
             }
-            else if (team == 3)
+            else if (type.Equals("Wizard"))
             {
                 GameObject[] team1 = GameObject.FindGameObjectsWithTag("Team 1");
                 GameObject[] team2 = GameObject.FindGameObjectsWithTag("Team 2");
@@ -75,6 +77,7 @@ public abstract class Unit : MonoBehaviour
 
     protected GameObject GetClosestUnit()
     {
+        Building building = null;
         GameObject unit = null;
         GameObject[] units = null;
         GameObject[] team1 = null;
@@ -86,6 +89,7 @@ public abstract class Unit : MonoBehaviour
             case 1:
                 team2 = GameObject.FindGameObjectsWithTag("Team 2");
                 team3 = GameObject.FindGameObjectsWithTag("Team 3");
+
                 units = team2.Concat(team3).ToArray();
                 break;
             case 2:
@@ -102,11 +106,15 @@ public abstract class Unit : MonoBehaviour
         float distance = 9999;
         foreach(GameObject temp in units)
         {
-            float tempDist = Vector3.Distance(transform.position, temp.transform.position);
-            if (tempDist <= distance)
+            building = temp.GetComponent<Building>();
+            if (building == null)
             {
-                distance = tempDist;
-                unit = temp;
+                float tempDist = Vector3.Distance(transform.position, temp.transform.position);
+                if (tempDist <= distance)
+                {
+                    distance = tempDist;
+                    unit = temp;
+                }
             }
         }
         return unit;       

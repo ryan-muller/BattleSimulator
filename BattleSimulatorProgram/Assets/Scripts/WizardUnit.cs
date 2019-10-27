@@ -13,6 +13,7 @@ public class WizardUnit : Unit
         attack = 1;
         range = 2;
         speed = 0.75f;
+        type = "Wizard";
         team = Random.Range(3, 4);
 
         GetComponent<MeshRenderer>().material = mat[team - 1];
