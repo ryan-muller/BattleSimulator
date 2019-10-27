@@ -12,18 +12,9 @@ public class GameEngine : MonoBehaviour
         
         for (int i = 0; i < UNITS; i++)
         {
-           // CreateUnit();
+            CreateUnit();
         }
-        GameObject unit = Instantiate(options[0]);
-        unit.transform.position = new Vector3(Random.Range(MIN_X, MAX_X), 0, Random.Range(MIN_Z, MAX_Z));
-        GameObject unit1 = Instantiate(options[0]);
-        unit1.transform.position = new Vector3(Random.Range(MIN_X, MAX_X), 0, Random.Range(MIN_Z, MAX_Z));
-        GameObject unit2 = Instantiate(options[0]);
-        unit2.transform.position = new Vector3(Random.Range(MIN_X, MAX_X), 0, Random.Range(MIN_Z, MAX_Z));
-        GameObject unit3 = Instantiate(options[0]);
-        unit3.transform.position = new Vector3(Random.Range(MIN_X, MAX_X), 0, Random.Range(MIN_Z, MAX_Z));
-        GameObject unit4 = Instantiate(options[2]);
-        unit4.transform.position = new Vector3(Random.Range(MIN_X, MAX_X), 0, Random.Range(MIN_Z, MAX_Z));
+
 
     }
 

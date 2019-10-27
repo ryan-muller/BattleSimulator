@@ -10,9 +10,9 @@ public class MeleeUnit : Unit
     void Start()
     {
 
-        hp = 100;
+        hp = 1000;
         maxHp = hp;
-        attack = 2;
+        attack = 3;
         range = 1;
         speed = 1;
         team = Random.Range(1, 3);

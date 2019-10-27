@@ -8,7 +8,7 @@ public class WizardUnit : Unit
     // Start is called before the first frame update
     void Start()
     {
-        hp = 100;
+        hp = 1000;
         maxHp = hp;
         attack = 1;
         range = 2;

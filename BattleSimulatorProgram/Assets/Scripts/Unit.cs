@@ -35,7 +35,7 @@ public abstract class Unit : MonoBehaviour
         DeathCheck();
         if (GetClosestUnit() != null)
         {
-            if (((float)hp / maxHp) <= (0.25 * maxHp) / 100)
+            if (((float)hp / maxHp) <= (0.25 * maxHp) / 1000)
             {
                 transform.position = Vector3.MoveTowards(transform.position, GetClosestUnit().transform.position, -(speed / 2) * Time.deltaTime);
             }
