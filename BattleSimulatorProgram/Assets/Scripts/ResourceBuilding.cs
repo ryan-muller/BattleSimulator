@@ -5,11 +5,15 @@ using UnityEngine.UI;
 
 public class ResourceBuilding : Building
 {
-    [SerializeField] private int remainingPool;
-    [SerializeField] private int generated;
-    [SerializeField] private int genRate;
-    [SerializeField] private int genAmount;
-    [SerializeField] private float timer;
+    [SerializeField] protected int remainingPool;
+    [SerializeField] protected int generated;
+    [SerializeField] protected int genRate;
+    [SerializeField] protected int genAmount;
+    [SerializeField] protected float timer;
+
+    public int Generated { get => generated; set => generated = value; }
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -31,15 +35,35 @@ public class ResourceBuilding : Building
             case 2:
                 gameObject.tag = "Team 2";
                 break;
+            case 3:
+                gameObject.tag = "Team 3";
+                break;
         }
+        healthBar = GetComponentsInChildren<Image>()[1];
     }
 
     // Update is called once per frame
     void Update()
     {
+        DeathCheck();
         int resourceTotal = GenerateResources();
-        Text resourceBox = GameObject.Find("ResourceText").GetComponent<Text>();
-        resourceBox.text = "Resources: " + resourceTotal;
+        Text resourceBox;
+        switch (team)
+        {
+            case 1:
+                resourceBox = GameObject.Find("ResourceTeam1").GetComponent<Text>();
+                resourceBox.text = "Team 1's Resources: " + resourceTotal;
+                break;
+            case 2:
+                resourceBox = GameObject.Find("ResourceTeam2").GetComponent<Text>();
+                resourceBox.text = "Team 2's Resources: " + resourceTotal;
+                break;
+            case 3:
+                resourceBox = GameObject.Find("ResourceTeam3").GetComponent<Text>();
+                resourceBox.text = "Team 3's Resources: " + resourceTotal;
+                break;
+        }
+        healthBar.fillAmount = ((float)hp / maxHp);
     }
 
     protected int GenerateResources()
@@ -51,8 +75,17 @@ public class ResourceBuilding : Building
             {
                 generated += genAmount;
                 remainingPool -= genAmount;
+                timer = 0;
             }
         }
         return generated;
+    }
+
+    protected void DeathCheck()
+    {
+        if (hp <= 0)
+        {
+            Destroy(this.gameObject);
+        }
     }
 }

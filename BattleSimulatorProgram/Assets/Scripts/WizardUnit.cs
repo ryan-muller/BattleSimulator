@@ -8,13 +8,17 @@ public class WizardUnit : Unit
     // Start is called before the first frame update
     void Start()
     {
-        hp = 1000;
+        hp = 100;
         maxHp = hp;
         attack = 1;
         range = 2;
         speed = 0.75f;
         type = "Wizard";
-        team = Random.Range(3, 4);
+        
+        if (team == 0)
+        {
+            team = Random.Range(3, 4);
+        }
 
         GetComponent<MeshRenderer>().material = mat[team - 1];
         switch (team)
@@ -31,5 +35,6 @@ public class WizardUnit : Unit
         }
         healthBar = GetComponentsInChildren<Image>()[1];
     }
+    
 }
 

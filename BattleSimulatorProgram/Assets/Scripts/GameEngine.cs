@@ -5,7 +5,7 @@ using UnityEngine;
 public class GameEngine : MonoBehaviour
 {
     [SerializeField] GameObject[] options = new GameObject[5];
-    [SerializeField] static int MIN_X = -10, MAX_X = 10, MIN_Z = -10, MAX_Z = 10, UNITS = 8, BUILDINGS = 3;
+    [SerializeField] static int MIN_X = -25, MAX_X = 25, MIN_Z = -25, MAX_Z = 25, UNITS = 9, BUILDINGS = 6;
     // Start is called before the first frame update
     void Start()
     {
@@ -29,7 +29,7 @@ public class GameEngine : MonoBehaviour
 
     private void CreateBuilding()
     {
-        GameObject building = Instantiate(options[Random.Range(3, 4)]);
+        GameObject building = Instantiate(options[Random.Range(3, 5)]);
         building.transform.position = new Vector3(Random.Range(MIN_X, MAX_X), 0, Random.Range(MIN_Z, MAX_Z));
     }
     // Update is called once per frame

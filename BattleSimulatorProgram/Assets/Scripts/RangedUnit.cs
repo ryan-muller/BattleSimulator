@@ -9,13 +9,17 @@ public class RangedUnit : Unit
     // Start is called before the first frame update
     void Start()
     {
-        hp = 500;
+        hp = 50;
         maxHp = hp;
         attack = 1;
         range = 3;
         speed = 0.5f;
         type = "Ranged";
-        team = Random.Range(1, 3);
+        if (team == 0)
+        {
+            team = Random.Range(1, 3);
+        }
+        
 
         GetComponent<MeshRenderer>().material = mat[team - 1];
         switch (team)
@@ -30,5 +34,6 @@ public class RangedUnit : Unit
         }
         healthBar = GetComponentsInChildren<Image>()[1];
     }
+    
 }
 

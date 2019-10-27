@@ -22,10 +22,10 @@ public abstract class Unit : MonoBehaviour
     public int MaxHp { get => maxHp; }
     public int Attack { get => attack; }
     public float Speed { get => speed; }
-    public int Team { get => team; }
+    public int Team { get => team; set => team = value; }
     public string Type { get => type; }
 
-
+    Building building = null;
     // Start is called before the first frame update
     void Start()
     {
@@ -46,21 +46,34 @@ public abstract class Unit : MonoBehaviour
                 transform.position = Vector3.MoveTowards(transform.position, GetClosestUnit().transform.position, speed * Time.deltaTime);
             }
             else if (type.Equals("Wizard"))
-            {
+            {               
                 GameObject[] team1 = GameObject.FindGameObjectsWithTag("Team 1");
                 GameObject[] team2 = GameObject.FindGameObjectsWithTag("Team 2");
                 GameObject[] nonWizard = team1.Concat(team2).ToArray();
                 foreach (GameObject enemy in nonWizard)
                 {
-                    if (IsInRange(enemy))
+                    building = enemy.GetComponent<Building>();
+                    if (building == null)
                     {
-                        AttackEnemy(enemy);
+                        if (IsInRange(enemy))
+                        {
+                            AttackEnemy(enemy);
+                        }
                     }
                 }
             }
-            else if (team != 3)
+            else if (!type.Equals("Wizard"))
             {
                 AttackEnemy(GetClosestUnit());
+            }
+        }else if (GetClosestBuilding() != null)
+        {
+            if (!IsInRange(GetClosestBuilding()))
+            {
+                transform.position = Vector3.MoveTowards(transform.position, GetClosestBuilding().transform.position, speed * Time.deltaTime);
+            }else
+            {
+                AttackEnemy(GetClosestBuilding());
             }
         }
         healthBar.fillAmount = ((float)hp / maxHp);
@@ -77,7 +90,6 @@ public abstract class Unit : MonoBehaviour
 
     protected GameObject GetClosestUnit()
     {
-        Building building = null;
         GameObject unit = null;
         GameObject[] units = null;
         GameObject[] team1 = null;
@@ -89,7 +101,6 @@ public abstract class Unit : MonoBehaviour
             case 1:
                 team2 = GameObject.FindGameObjectsWithTag("Team 2");
                 team3 = GameObject.FindGameObjectsWithTag("Team 3");
-
                 units = team2.Concat(team3).ToArray();
                 break;
             case 2:
@@ -120,9 +131,54 @@ public abstract class Unit : MonoBehaviour
         return unit;       
     }
 
+    protected GameObject GetClosestBuilding()
+    {
+        GameObject building = null;
+        GameObject[] buildings = null;
+        GameObject[] team1 = null;
+        GameObject[] team2 = null;
+        GameObject[] team3 = null;
+
+        switch (team)
+        {
+            case 1:
+                team2 = GameObject.FindGameObjectsWithTag("Team 2");
+                team3 = GameObject.FindGameObjectsWithTag("Team 3");
+                buildings = team2.Concat(team3).ToArray();
+                break;
+            case 2:
+                team1 = GameObject.FindGameObjectsWithTag("Team 1");
+                team3 = GameObject.FindGameObjectsWithTag("Team 3");
+                buildings = team1.Concat(team3).ToArray();
+                break;
+            case 3:
+                team1 = GameObject.FindGameObjectsWithTag("Team 1");
+                team2 = GameObject.FindGameObjectsWithTag("Team 2");
+                buildings = team1.Concat(team2).ToArray();
+                break;
+        }
+        float distance = 9999;
+        foreach (GameObject temp in buildings)
+        {
+                float tempDist = Vector3.Distance(transform.position, temp.transform.position);
+                if (tempDist <= distance)
+                {
+                    distance = tempDist;
+                    building = temp;
+                }
+        }
+        return building;
+    }
+
     protected void AttackEnemy(GameObject enemy)
     {
-            enemy.GetComponent<Unit>().Hp -= this.attack;
+        if (enemy.GetComponent<Unit>() != null)
+        {
+            enemy.GetComponent<Unit>().hp -= this.attack;
+        }else
+        {
+            enemy.GetComponent<Building>().Hp -= this.attack;
+        }
     }
 
     protected void DeathCheck()
@@ -132,4 +188,5 @@ public abstract class Unit : MonoBehaviour
             Destroy(this.gameObject);    
         }
     }
+
 }
