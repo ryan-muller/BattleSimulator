@@ -1,6 +1,6 @@
 Win64
 PlayerPath?
-C:/Users/Ryan/Desktop/BattleSimulatorProgram.exe
+E:/Program Repos/BattleSimulatorProgram.exe
 SceneListBegin?
 Assets/Scenes/BattleSim.unity
 SceneListEnd?
