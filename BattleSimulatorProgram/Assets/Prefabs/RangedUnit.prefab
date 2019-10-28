@@ -256,6 +256,7 @@ MonoBehaviour:
   attack: 0
   speed: 0
   team: 0
+  type: 
   mat:
   - {fileID: 2100000, guid: 9d64b4bc6c7424546bf38e7c0736c0dd, type: 2}
   - {fileID: 2100000, guid: 28a124014774c84488d270a304b1a1a7, type: 2}
@@ -295,7 +296,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0.666}
   m_SizeDelta: {x: 1, y: 0.25}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!223 &1231241574022694846

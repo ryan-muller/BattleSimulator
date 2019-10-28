@@ -13,7 +13,7 @@ public class FactoryBuilding : Building
     // Start is called before the first frame update
     void Start()
     {
-        hp = 100;
+        hp = 500;
         maxHp = hp;
         type = "Factory Building";
         spawnType = Random.Range(0, 2);
@@ -43,6 +43,8 @@ public class FactoryBuilding : Building
     // Update is called once per frame
     void Update()
     {
+        healthBar.fillAmount = ((float)hp / maxHp);
+        DeathCheck();
         if (Random.Range(0, 9) < 3)
         {
 
@@ -57,7 +59,7 @@ public class FactoryBuilding : Building
                 }
             }
             Debug.Log(resources.TotalTeam1Out);
-            DeathCheck();
+            
 
             foreach (GameObject node in objects)
             {

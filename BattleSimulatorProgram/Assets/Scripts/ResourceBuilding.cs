@@ -17,7 +17,7 @@ public class ResourceBuilding : Building
     // Start is called before the first frame update
     void Start()
     {
-        hp = 100;
+        hp = 500;
         maxHp = hp;
         type = "Resource Building";
         remainingPool = 120;
