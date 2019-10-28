@@ -179,7 +179,6 @@ MonoBehaviour:
   - {fileID: 8475704003904048245, guid: 0a3601e9d845fe74d815fef747e8310f, type: 3}
   spawnType: 0
   spawnCost: 0
-  timer: 0
 --- !u!64 &2614388175370866377
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -293,7 +292,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7557847680873695544}
   m_LocalRotation: {x: -1, y: -0, z: -0, w: 0}
-  m_LocalPosition: {x: 0, y: 0, z: -1.4000001}
+  m_LocalPosition: {x: 0, y: 0, z: -1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 581996485453159927}
@@ -302,8 +301,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0.4999997}
-  m_SizeDelta: {x: 1, y: 0.25}
+  m_AnchoredPosition: {x: 0, y: 1.77}
+  m_SizeDelta: {x: 2, y: 0.25}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!223 &4641781107809259311
 Canvas:
